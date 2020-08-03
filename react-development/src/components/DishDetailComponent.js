@@ -1,9 +1,14 @@
-import React from 'react';
+import React, {Component} from 'react';
 import { Card, CardImg, CardText, CardBody, CardTitle } from 'reactstrap';
-// import { Link } from 'react-router-dom';
 
-    // function RenderDish(props){}
-    function RenderDish({dish}) {
+class DishDetail extends Component{
+    constructor(props){
+        super(props) ;
+        this.state = {
+        
+        };
+    }
+    RenderDish(dish) {
         if (dish != null) {
             return (
                 <div className="col-12 col-md-5 m-1">
@@ -23,8 +28,7 @@ import { Card, CardImg, CardText, CardBody, CardTitle } from 'reactstrap';
         }
     }
 
-    // function RenderComments(props){}
-    function RenderComments({comments}) {
+    RenderComments(comments) {
         if (comments != null) {
             const cmnts = comments.map((commnts) => {
                 return (
@@ -57,21 +61,20 @@ import { Card, CardImg, CardText, CardBody, CardTitle } from 'reactstrap';
             );
         }
     }
-    
-    const DishDetail = (props) => {
-        if (props.dish != null) {
+
+    render(){
+        if (this.props.dish != null) {
             return (
                 <div className="container">
-                    <div className="row">
-                        
+                    <div className="row">   
                         <div className="col-12">
-                            <h3>{props.dish.name}</h3>
+                            <h3>{this.props.dish.name}</h3>
                             <hr />
                         </div>    
                     </div>
                     <div className="row">
-                        <RenderDish dish={props.dish} />
-                        <RenderComments comments={props.dish.comments} />
+                        {this.RenderDish(this.props.dish) }
+                        {this.RenderComments(this.props.dish.comments)}
                     </div>    
                 </div>
             );
@@ -81,5 +84,6 @@ import { Card, CardImg, CardText, CardBody, CardTitle } from 'reactstrap';
             );
         }
     }
-    
+}
+              
 export default DishDetail;
